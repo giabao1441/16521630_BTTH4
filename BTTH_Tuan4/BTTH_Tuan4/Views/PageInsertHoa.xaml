@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BTTH_Tuan4.Views.PageInsertHoa"
+             xmlns:viewmode="clr-namespace:BTTH_Tuan4.ViewModels">
+    <ContentPage.BindingContext>
+        <viewmode:LoaihoaViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Mã hoa" Grid.Row="0" Grid.Column="0"/>
+            <Entry x:Name="Mahoa" Text="{Binding Hoa.Mahoa, Mode=TwoWay}" Grid.Column="1" Grid.Row="0"/>
+            <Label Text="Mã loại hoa" Grid.Row="0" Grid.Column="1"/>
+            <Entry x:Name="Maloai" Text="{Binding Hoa.Maloai, Mode=TwoWay}" Grid.Column="1" Grid.Row="0"/>
+
+            <Label Text="Tên hoa" Grid.Row="1" Grid.Column="0"/>
+            <Entry x:Name="Ten Hoa:" Text="{Binding Hoa.Tenhoa, Mode=TwoWay}" Grid.Column="1" Grid.Row="1"/>
+            
+            <Label Text="Mô tả" Grid.Row="2" Grid.Column="0"/>
+            <Entry x:Name="Mota" Text="{Binding Hoa.Mota, Mode=TwoWay}" Grid.Column="1" Grid.Row="2"/>
+            <Label Text="Giá:" Grid.Row="3" Grid.Column="0"/>
+            <Entry x:Name="Gia" Text="{Binding Hoa.Gia, Mode=TwoWay}" Grid.Column="1" Grid.Row="3"/>
+
+            <Button Text="Insert" VerticalOptions="Center" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Command="{Binding AddHoa}"/>
+
+            <ListView x:Name="lstloaihoa" VerticalOptions="Center" ItemsSource="{Binding LoaihoaList}" SelectedItem="{Binding Loaihoa, Mode=TwoWay}" 
+                      Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Maloai, Mode=TwoWay}" Detail="{Binding Tenloai, Mode=TwoWay}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
